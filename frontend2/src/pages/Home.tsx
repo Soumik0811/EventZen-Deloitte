@@ -39,7 +39,7 @@ function Home() {
             className="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center"
           >
             <Users className="w-16 h-16 text-blue-600 mb-4" />
-            <h2 className="text-2xl font-semibold text-gray-800">Attendee</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">Attendees</h2>
             <p className="mt-2 text-gray-600 text-center">
               Quick and easy event registration process
             </p>
