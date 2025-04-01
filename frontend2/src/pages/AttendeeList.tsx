@@ -23,7 +23,6 @@ const AttendeeList: React.FC<AttendeeListProps> = ({ eventId, refreshData }) => 
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<Attendee>>({});
 
-  // Fetch attendees for the specific event
   useEffect(() => {
     fetchAttendees();
   }, [eventId]);
@@ -38,7 +37,6 @@ const AttendeeList: React.FC<AttendeeListProps> = ({ eventId, refreshData }) => 
     }
   };
 
-  // Handle attendee deletion
   const handleDelete = async (_id: string) => {
     try {
       await axios.delete(`http://localhost:5000/api/attendees/${_id}`);
@@ -51,7 +49,6 @@ const AttendeeList: React.FC<AttendeeListProps> = ({ eventId, refreshData }) => 
     }
   };
 
-  // Handle editing an attendee
   const handleEdit = (attendee: Attendee) => {
     setEditingId(attendee._id);
     setEditForm({
@@ -64,7 +61,6 @@ const AttendeeList: React.FC<AttendeeListProps> = ({ eventId, refreshData }) => 
     });
   };
 
-  // Handle updating an attendee
   const handleUpdate = async () => {
     if (!editForm || !editingId) return;
     try {
@@ -80,13 +76,11 @@ const AttendeeList: React.FC<AttendeeListProps> = ({ eventId, refreshData }) => 
     }
   };
 
-  // Handle input changes for the edit form
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setEditForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Function to determine status color
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Confirmed':
