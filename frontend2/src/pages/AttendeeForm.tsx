@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ArrowLeft } from 'lucide-react';
 
-// Define the Event interface
 interface Event {
-  eventId: string; // Backend uses `eventId` instead of `_id`
+  eventId: string; 
   eventName: string;
 }
 
@@ -13,18 +12,18 @@ export default function Register() {
     name: '',
     phone: '',
     email: '',
-    event_id: '', // Store the selected event's ID
-    event_name: '', // Store the selected event's name
+    event_id: '', 
+    event_name: '', 
   });
 
-  const [events, setEvents] = useState<Event[]>([]); // List of events fetched from the backend
+  const [events, setEvents] = useState<Event[]>([]); 
 
-  // Fetch events for the dropdown
+  
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/events');
-        setEvents(response.data); // Assuming the response contains an array of events
+        setEvents(response.data); 
       } catch (error) {
         console.error('Error fetching events:', error);
         alert('Failed to load events');
@@ -34,28 +33,24 @@ export default function Register() {
     fetchEvents();
   }, []);
 
-  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
 
     if (name === 'event_id') {
-      // Find the selected event to populate `event_name`
       const selectedEvent = events.find((event) => event.eventId === value);
       setFormData((prev) => ({
         ...prev,
-        event_id: value, // Store the `eventId` of the selected event
-        event_name: selectedEvent?.eventName || '', // Populate the `event_name`
+        event_id: value, 
+        event_name: selectedEvent?.eventName || '',
       }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Log the payload to debug
     console.log('Form Data:', formData);
 
     try {
@@ -140,7 +135,7 @@ export default function Register() {
             </select>
           </div>
 
-          {/* Submit Button with gradient */}
+          {/* Submit Button*/}
           <div className="flex gap-4">
             <button
               type="button"
