@@ -161,21 +161,7 @@ EventZen is a full-stack web application designed to streamline event planning a
   Request Body: `{ name, address, capacity, amenities, pricing }`  
 
 - **DELETE /api/venues/:venueId**  
-  Description: Delete a venue.  
-
----
-
-### Budgets
-- **GET /api/events/:eventId/budget**  
-  Description: Fetch the budget details for a specific event.  
-
-- **POST /api/events/:eventId/budget**  
-  Description: Create a budget for an event.  
-  Request Body: `{ expenses, revenue, totalBudget }`  
-
-- **PUT /api/events/:eventId/budget**  
-  Description: Update the budget details for an event.  
-  Request Body: `{ expenses, revenue, totalBudget }`  
+  Description: Delete a venue.   
 
 ---
 
@@ -231,10 +217,7 @@ EventZen is a full-stack web application designed to streamline event planning a
   Description: Fetch vendors for a specific event.  
 
 - **GET /api/venues**  
-  Description: Fetch all venues for venue management.  
-
-- **GET /api/events/:eventId/budget**  
-  Description: Fetch budget details for a specific event.  
+  Description: Fetch all venues for venue management.    
 
 
 # Docker Integration for EventZen
@@ -254,15 +237,11 @@ EventZen leverages Docker to streamline the development, testing, and deployment
 
 ## Docker Components in EventZen
 
-### 1. **Frontend Container**
-   - The frontend is built using React and served via a lightweight Node.js server.
-   - The Dockerfile installs dependencies, builds the application, and serves it on a specified port (e.g., `3000`).
-
-### 2. **Backend Container**
+### 1. **Backend Container**
    - The backend is built using Node.js, Express, and other required libraries.
    - The Dockerfile installs dependencies, starts the server, and connects to the MongoDB container.
 
-### 3. **MongoDB Container**
+### 2. **MongoDB Container**
    - A pre-built MongoDB image is used to run the database service.
    - Data persistence is achieved using Docker volumes to store MongoDB data.
 
