@@ -57,7 +57,7 @@ function EventDashboard() {
           <div className="flex items-center space-x-3">
             <UserCircle className="w-10 h-10 text-indigo-600" />
             <div>
-              <h3 className="font-medium">Event Organizer</h3>
+              <h3 className="font-medium text-orange-500">Event Organizer</h3>
               <p className="text-sm text-gray-500">Dashboard</p>
             </div>
           </div>

@@ -27,10 +27,19 @@ function OrganizerAuth() {
         : 'http://localhost:5000/api/auth/organizer/signup';
 
       const response = await axios.post(endpoint, formData);
+
+      if (!isLogin) {
+        // After signup, switch to login mode
+        toast.success('Account created successfully!');
+        setIsLogin(true); // Switch to login form
+        return; // Stop further execution
+      }
+
+      // Handle login
       localStorage.setItem('organizerToken', response.data.token);
       localStorage.setItem('organizerId', response.data.organizerId);
-      toast.success(isLogin ? 'Login successful!' : 'Account created successfully!');
-      navigate('/organizer');
+      toast.success('Login successful!');
+      navigate('/organizer'); // Redirect to organizer dashboard
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Authentication failed';
       toast.error(errorMessage);
@@ -67,22 +76,20 @@ function OrganizerAuth() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
-              <>
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required={!isLogin}
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                  />
-                </div>
-              </>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required={!isLogin}
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                />
+              </div>
             )}
 
             <div>

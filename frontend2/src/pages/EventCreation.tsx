@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { ArrowLeft, Calendar, MapPin, Users, Tag, DollarSign } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 interface EventForm {
   eventName: string;
@@ -11,7 +12,7 @@ interface EventForm {
   capacityLimits: number;
   pricing: number;
   categoryTheme: string;
-  orgMail: string;
+  orgId: string;
 }
 
 function EventCreation() {
@@ -23,9 +24,20 @@ function EventCreation() {
     capacityLimits: 100,
     pricing: 0,
     categoryTheme: '',
-    orgMail: '',
+    orgId: '',
   });
 
+
+  const location = useLocation();
+  const organizerId = location.state?.orgId || '';
+
+  React.useEffect(() => {
+      setFormData((prevData) => ({
+        ...prevData,
+        orgId: organizerId,
+      }));
+    }, [organizerId]);
+    
   // Function to format the date-time for the backend
   const formatDateTimeForBackend = (dateTime: string): string => {
     const dateObject = new Date(dateTime);
@@ -175,21 +187,11 @@ function EventCreation() {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
-                <Users className="w-4 h-4 mr-2" />
-                Organizer Email
-              </label>
-              <input
-                type="email"
-                name="orgMail"
-                required
-                value={formData.orgMail}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="organizer@example.com"
-              />
-            </div>
+            <input
+              type="hidden"
+              name="orgId"
+              value={formData.orgId}
+            />
 
             <button
               type="submit"
