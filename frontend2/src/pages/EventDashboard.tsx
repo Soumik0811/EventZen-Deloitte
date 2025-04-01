@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { ArrowLeft, Users, MapPin, Truck, Calendar, UserCircle, PlusCircle } from 'lucide-react';
-import AttendeeList from './AttendeeList'; // Import AttendeeList component
-import VendorList from './VendorList'; // Import VendorList component
+import AttendeeList from './AttendeeList'; 
+import VendorList from './VendorList'; 
 import VenueList from './VenueList';
 
 interface Event {
