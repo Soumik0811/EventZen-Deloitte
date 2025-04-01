@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 interface EventForm {
   eventName: string;
-  eventDateTime: string; // Expected format: yyyy-MM-ddTHH:mm:ssZ
+  eventDateTime: string; 
   venueName: string;
   capacityLimits: number;
   pricing: number;
@@ -19,7 +19,7 @@ function EventCreation() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<EventForm>({
     eventName: '',
-    eventDateTime: '', // Default empty string
+    eventDateTime: '', 
     venueName: '',
     capacityLimits: 100,
     pricing: 0,
@@ -38,16 +38,15 @@ function EventCreation() {
       }));
     }, [organizerId]);
     
-  // Function to format the date-time for the backend
   const formatDateTimeForBackend = (dateTime: string): string => {
     const dateObject = new Date(dateTime);
-    return dateObject.toISOString(); // Converts to ISO 8601 format (yyyy-MM-ddTHH:mm:ssZ)
+    return dateObject.toISOString(); 
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Format the eventDateTime before sending it to the backend
+     
       const formattedData = {
         ...formData,
         eventDateTime: formatDateTimeForBackend(formData.eventDateTime),
