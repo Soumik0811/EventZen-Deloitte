@@ -1,30 +1,3 @@
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { Toaster } from 'react-hot-toast';
-// import Home from './pages/Home';
-// import AttendeeForm from './pages/AttendeeForm';
-// import OrganizerDashboard from './pages/OrganizerDashboard';
-// import EventCreation from './pages/EventCreation';
-// import EventDashboard from './pages/EventDashboard';
-
-// function App() {
-//   return (
-//     <Router>
-//       <div className="min-h-screen bg-gray-50">
-//         <Toaster position="top-right" />
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="/attendee" element={<AttendeeForm />} />
-//           <Route path="/organizer" element={<OrganizerDashboard />} />
-//           <Route path="/create-event" element={<EventCreation />} />
-//           <Route path="/event/:eventId" element={<EventDashboard />} />
-//         </Routes>
-//       </div>
-//     </Router>
-//   );
-// }
-
-// export default App
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home';
