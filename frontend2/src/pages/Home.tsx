@@ -19,12 +19,11 @@ function Home() {
     pricing: number;
     categoryTheme: string;
     _class: string;
-    orgmail?: string; // Optional property added
+    orgmail?: string; 
   }>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch events from API
     const fetchEvents = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/events');
