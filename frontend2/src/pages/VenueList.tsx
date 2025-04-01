@@ -3,14 +3,13 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { PlusCircle, Pencil, Trash2 } from 'lucide-react';
 
-// Define the Venue interface with the new fields
 interface Venue {
   id: string;
   venueName: string;
   address: string;
   capacity: number;
   amenities: string;
-  pricing: number; // Use `number` instead of `Integer` as TypeScript doesn't have a separate `Integer` type
+  pricing: number; 
 }
 
 interface VenueListProps {
@@ -37,7 +36,6 @@ const VenueList: React.FC<VenueListProps> = ({ eventId, refreshData }) => {
     pricing: 0,
   });
 
-  // Fetch venues for the specific event
   useEffect(() => {
     fetchVenues();
   }, [eventId]);
@@ -47,8 +45,8 @@ const VenueList: React.FC<VenueListProps> = ({ eventId, refreshData }) => {
       const response = await axios.get(`http://localhost:8080/api/venues/event/${eventId}`);
       const fetchedVenues = response.data.map((venue: Venue) => ({
         ...venue,
-        capacity: venue.capacity || 0, // Ensure capacity is a number
-        pricing: venue.pricing || 0, // Ensure pricing is a number
+        capacity: venue.capacity || 0, 
+        pricing: venue.pricing || 0, 
       }));
       setVenues(fetchedVenues);
     } catch (error) {
@@ -70,7 +68,6 @@ const VenueList: React.FC<VenueListProps> = ({ eventId, refreshData }) => {
     }
   };
 
-  // Handle adding a new venue
   const handleAddVenue = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -91,7 +88,6 @@ const VenueList: React.FC<VenueListProps> = ({ eventId, refreshData }) => {
     }
   };
 
-  // Handle editing a venue
   const handleEdit = (venue: Venue) => {
     setEditingId(venue.id);
     setEditForm({
@@ -119,7 +115,6 @@ const VenueList: React.FC<VenueListProps> = ({ eventId, refreshData }) => {
     }
   };
 
-  // Handle input changes for the add/edit forms
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
