@@ -15,7 +15,7 @@ WORKDIR /app
 COPY --from=build /app/out .
 
 # Expose the port your .NET app runs on (default is 5128)
-EXPOSE 8080
+EXPOSE 5128
 
 # Command to run the application
 ENTRYPOINT ["dotnet", "EventZen.VendorApi.dll"]
